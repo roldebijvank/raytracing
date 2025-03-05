@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++23 -Wall -Wextra -O2
 
-TARGET = raytracing
+TARGET = ./bin/raytracing
 SRC = ./src/raytracing.cpp
 
 all: $(TARGET)

@@ -6,6 +6,8 @@
 
 using color = vec3;
 
+// convert the color from linear space to gamma space
+// since displays and humans dont perceive brightness linearly
 inline double linear_to_gamma(double linear_component) {
     if (linear_component > 0) {
         return std::sqrt(linear_component);
@@ -14,6 +16,7 @@ inline double linear_to_gamma(double linear_component) {
     return 0;
 }
 
+// 
 void write_color(std::ostream& out, const color& pixel_color) {
     auto r = pixel_color.x();
     auto g = pixel_color.y();
