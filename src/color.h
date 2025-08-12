@@ -6,8 +6,13 @@
 
 using color = vec3;
 
-// convert the color from linear space to gamma space
-// since displays and humans dont perceive brightness linearly
+/**
+ * Convert the color from linear space to gamma space.
+ * Since displays and humans don't perceive brightness linearly,
+ * this function applies a gamma correction.
+ * @param linear_component The linear value of the color component.
+ * @return The gamma-corrected value, which is the square root of the input or 0 if input <= 0.
+ */
 inline double linear_to_gamma(double linear_component) {
     if (linear_component > 0) {
         return std::sqrt(linear_component);
@@ -16,7 +21,14 @@ inline double linear_to_gamma(double linear_component) {
     return 0;
 }
 
-// 
+/**
+ * Write the color to an output stream in a format suitable for PPM images.
+ * This function converts the color from linear space to gamma space,
+ * clamps the values to the range [0, 0.999], scales them to the range [0, 255],
+ * and writes them to the output stream.
+ * @param out The output stream to write the color to.
+ * @param pixel_color The color to write, represented as a vec3.
+ */
 void write_color(std::ostream& out, const color& pixel_color) {
     auto r = pixel_color.x();
     auto g = pixel_color.y();
